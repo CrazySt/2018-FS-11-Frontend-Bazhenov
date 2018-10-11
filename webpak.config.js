@@ -1,19 +1,29 @@
-var path = require('path');'
+const path = require('path');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const sourceRoot = path.resolve(__dirname, 'src');
 
 module.exports = {
-    module: {
-        rules:[
+    module:  {
+        rules: [
             {
-                test:/\.css$/,
-                use:['style-loader', 'css-loader']
-            }
-        ],
-        loaders: [
+                test: /\.js$/,
+                include: sourceRoot,
+                use: {
+                    loader: 'babel-loader'
+		}
+            },
             {
-            test: /\.js/,
-            loader: 'babel-loader',
-            include: __dirname + '/src',
+                test: /shadow\.css$/,
+                include: sourceRoot,
+                use: {
+                    loader: 'css-loader'
+                }
+            },
+            {
+                test: /index\.css$/,
+                include: sourceRoot,
+                use: ExtractTextPlugin.extract('css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]')
             }
-        ],
+        ]
     }
 };
