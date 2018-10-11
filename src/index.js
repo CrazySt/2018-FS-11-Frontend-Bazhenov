@@ -1,2 +1,4 @@
+import .my_div from './my_style.css';
 import say from './lib/test.js';
-alert(say('world'));
+say('world');
+
