@@ -1,4 +1,3 @@
+import say from './lib/test';
 
-import say from './lib/test.js';
 say('world');
-
